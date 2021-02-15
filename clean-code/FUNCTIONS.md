@@ -123,9 +123,61 @@ function assertExpectedEqualsActual(expected: any, actual: any) { ... }
 
 ## Have no side effects
 
--   [TODO: Issue #39 - Book Club: Document our use of "Clean Code: Functions - Have no side effects"](https://github.com/AndcultureCode/AndcultureCode/issues/39)
--   even with private methods, try your best to make it transparent how your data is passed and manipulated.
--   “pure function” minded though OOP
+A [side effect](<https://en.wikipedia.org/wiki/Side_effect_(computer_science)>) is when a function modifies a value outside its local scope or environment. It is doing more than the function's stated purpose and this can lead to strange couplings and hard to debug order dependencies. If a side effect is unavoidable, it is good to name the function so that it's impact and intention is understood by the reader. Another helpful strategy is to write [pure functions](https://en.wikipedia.org/wiki/Pure_function), which by definition, will require writing functions without side effects.
+
+_Before_
+
+```TypeScript
+function checkUserPermission(
+    username: string,
+    permissions: string[],
+): boolean {
+    const user = UserService.getUser(username);
+
+    if (user != null) {
+        const userPermissions = PermissionService.getPermissions(user);
+
+        if (CoreUtils.hasValues(userPermissions) &&
+            permissions.some((permission) =>
+                userPermissions.includes(permission))) {
+
+            // Side-effect
+            GlobalState.initialize();
+
+            return true;
+        }
+    }
+
+    return false;
+}
+```
+
+_After_
+
+```TypeScript
+function checkUserPermissionsAndInitializeGlobalState(
+    username: string,
+    permissions: string[],
+): boolean {
+    const user = UserService.getUser(username);
+
+    if (user != null) {
+        const userPermissions = PermissionService.getPermissions(user);
+
+        if (CoreUtils.hasValues(userPermissions) &&
+            permissions.some((permission) =>
+                userPermissions.includes(permission))) {
+
+            // Side-effect
+            GlobalState.initialize();
+
+            return true;
+        }
+    }
+
+    return false;
+}
+```
 
 ## Command Query Separation
 
