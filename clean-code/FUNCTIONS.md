@@ -19,8 +19,98 @@ Functions are the first line of organization in any program. Lets prioritize wri
 
 ## One level of abstraction per function
 
--   [TODO: Issue #35 - Book Club: Document our use of "Clean Code: Functions - One level of abstraction per function"](https://github.com/AndcultureCode/AndcultureCode/issues/35)
--   agree and perhaps mention it in documentation with example being it isn’t something many are thinking about
+While an uncommon consideration, remaining on a single level of abstraction can ease comprehension for readers. Avoid mixing high-level concepts with low-level details.
+
+Consider the following example in which an API controller's `Create` action is handling both the creation of an external user as well as the local user entity.
+
+```CS
+[HttpPost]
+public IActionResult Create([FromBody] UserDto dto)
+{
+    // -----------------------------------------------------------------------------------------
+    // #region Low level abstraction - directly interacting with a REST Client/external API and handling response
+    // -----------------------------------------------------------------------------------------
+
+    var request = new RestRequest();
+    request.AddJsonBody(JsonConvert.SerializeObject(dto));
+
+    var response = _restClient.Post(request);
+    if (response == null || response.ErrorException != null)
+    {
+        r.AddErrorAndLog(_logger, _localizer, ERROR_EXTERNAL_SERVICE_UNRESPONSIVE);
+        return null;
+    }
+
+    var externalUserDto = JsonConvert.DeserializeObject<Response<ExternalUserDto>>(
+        response.Content,
+        new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }
+    );
+
+    // #endregion Low level abstraction - directly interacting with a REST Client/external API and handling response
+
+    var user = new User
+    {
+        ExternalId = externalUserDto.Id,
+        // ...
+    };
+
+    // -----------------------------------------------------------------------------------------
+    // #region High level abstraction - persistence of a domain entity using a repository
+    // -----------------------------------------------------------------------------------------
+
+    var createResult = _createConductor.Create(user, dto.Password);
+    if (createResult.HasErrors)
+    {
+        return InternalError<UserDto>(createResult.Errors);
+    }
+
+    // #endregion High level abstraction - persistence of a domain entity using a repository
+
+    return Created(createResult.ResultObject);
+}
+```
+
+A better way to handle this would be abstracting the external user creation into a provider class, which can know about the low-level details of hitting the external API and handling the response.
+
+```CS
+[HttpPost]
+public IActionResult Create([FromBody] UserDto dto)
+{
+    // -----------------------------------------------------------------------------------------
+    // #region High level abstraction - interaction with an external service is wrapped in a provider
+    // -----------------------------------------------------------------------------------------
+
+    var externalUserResult = _externalProvider.Create(dto);
+    if (externalUserResult.HasErrors)
+    {
+        return InternalError<UserDto>(externalUserResult.Errors);
+    }
+
+    var externalUserDto = externalUserResult.ResultObject;
+
+    // #endregion High level abstraction - interaction with an external service is wrapped in a provider
+
+    var user = new User
+    {
+        ExternalId = externalUserDto.Id,
+        // ...
+    };
+
+    // -----------------------------------------------------------------------------------------
+    // #region High level abstraction - persistence of a domain entity using a repository
+    // -----------------------------------------------------------------------------------------
+
+    var createResult = _createConductor.Create(user, dto.Password);
+    if (createResult.HasErrors)
+    {
+        return InternalError<UserDto>(createResult.Errors);
+    }
+
+    // #endregion High level abstraction - persistence of a domain entity using a repository
+
+    return Created(createResult.ResultObject);
+}
+```
 
 ## Switch statements
 
