@@ -123,7 +123,7 @@ function assertExpectedEqualsActual(expected: any, actual: any) { ... }
 
 ## Have no side effects
 
-A [side effect](<https://en.wikipedia.org/wiki/Side_effect_(computer_science)>) is when a function modifies a value outside its local scope or environment. It is doing more than the function's stated purpose and this can lead to strange couplings and hard to debug order dependencies. If a side effect is unavoidable, it is good to name the function so that it's impact and intention is understood by the reader. Another helpful strategy is to write [pure functions](https://en.wikipedia.org/wiki/Pure_function), which by definition, will require writing functions without side effects.
+A [side effect](<https://en.wikipedia.org/wiki/Side_effect_(computer_science)>) is when a function modifies a value outside its local scope or environment. It is doing more than the function's stated purpose, which can lead to strange couplings and hard to debug order dependencies. If a side effect is unavoidable, it is good to name the function so that it's impact and intention is understood by the reader. Another helpful goal is to write [pure functions](https://en.wikipedia.org/wiki/Pure_function), which by definition, will result in functions without side effects.
 
 _Before_
 
