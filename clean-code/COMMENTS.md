@@ -62,27 +62,28 @@ You do not want to have a comment that does not match the element (it wastes a l
 
 Use regions within code, not comments with repeated characters.
 
-```
+```CSharp
 // Bad Position Marker --------------------------
 ```
 
-```
+```CSharp
 #region Good Position Marker
 ```
 
-In some cases a combined solution could be agreed upon by the team, such as this for Typescript in Edio:
+In some cases a combined solution could be agreed upon by the team, such as this position/region marker in TypeScript.
 
-```
+```TypeScript
 // -------------------------------------------------------------
 // #region Private Properties
 // -------------------------------------------------------------
 
-private _groupToOpen:         string;
-private _localStorageActions: LocalStorageActions;
-private _sendIntervalDelay:   number;
+private _groupToOpen:       string;
+private _sendIntervalDelay: number;
 
 // #endregion Private Properties
 ```
+
+Region snippets for VS Code are saved under the prefixes "[ts-region](https://github.com/AndcultureCode/AndcultureCode/blob/d0f70f16ef98edfe5069f6c52c56d1e84e2426e5/.vscode/typescript.code-snippets#L18-L28)" and "[cs-region](https://github.com/AndcultureCode/AndcultureCode/blob/d0f70f16ef98edfe5069f6c52c56d1e84e2426e5/.vscode/csharp.code-snippets#L8-L12)".
 
 ### Commented-Out Code
 
@@ -98,5 +99,8 @@ However, we agreed to allow markup in comments that will be used for documentati
 
 ### Too Much Information
 
-Do not include historical or irrelevant details within the comments.
 Keep your comments brief.
+Do not include historical or irrelevant details within the comments.
+
+Also, do not include information that is not relevant to the current context.
+Additional content makes it a higher likelihood that the comments and the code will diverge.
