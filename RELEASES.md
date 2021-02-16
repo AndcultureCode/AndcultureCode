@@ -56,8 +56,16 @@ Regardless of the repository's technical details for building a release build, t
         *   Use dotnet cli to publish new nupkg
             *   `dotnet nuget push AndcultureCode.CSharp.{ProjectName}.{3 Digit Release #}.nugkg -s https://api.nuget.org/v3/index.json`
 
-## Dotnet Frameowrk via NuGet
+## Dotnet Framework via NuGet
 
+*   If your project does not yet contain a `.nuspec` file, run the following command to generate one
+    `nuget spec`   
+    Note: If generating the .nuspec file for the first step, make sure the following `/Properties/AssemblyInfo.cs` attributes are set appropriately so that `.nuspec` can pull those in for token replacement:
+    *   `AssemblyTitle`  
+    *   `AssemblyDescription`  
+    *   `AssemblyCompany`
+    *   `AssemblyProduct`
+    *   `AssemblyCopyright`
 *   Ensure your `/Properties/AssemblyInfo.cs` has a 3 digit release number specified in the following lines of code
     ```c#
     [assembly: AssemblyVersion("{3 Digit Release #}.0")]
