@@ -6,7 +6,13 @@
 
 ### General
 
-https://github.com/AndcultureCode/AndcultureCode/issues/67
+One way to think of our code is like reading a newspaper story: as we move downward, the amount of detail within our code should increase.
+
+While there is no maximum file line length, if a file reaches 500 lines we should consider refactoring it into multiple files.
+We want to keep our files small so that they are easier to understand.
+
+Use blank lines to create space between thoughts, and group related code.
+Unnecessary comments, such as those on well-named variables, creates space that prevents grouping.
 
 ### Ordering
 
