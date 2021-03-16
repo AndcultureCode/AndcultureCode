@@ -242,12 +242,48 @@ public IActionResult Create([FromBody] UserDto dto)
 
 ## Switch statements
 
--   [TODO: Issue #36 - Book Club: Document our use of "Clean Code: Functions - Switch Statements"](https://github.com/AndcultureCode/AndcultureCode/issues/36)
--   if necessary, should live at lowest level of abstraction that is “appropriate”
--   example: reducers, events, “command-pattern”
--   avoid business rules
--   if, if else, if else, else (same goes here) - worse form
--   try to avoid by using other rules
+When comparing more than two possible conditions of an expression, prefer the `switch` statement to the `if...else`. Just as `if...else` conditionals should be avoided, the `switch` should be used sparingly. They should be kept DRY and at the lowest level of abstraction possible.
+
+```TypeScript
+// Avoid if...else and leverage switch statements
+if (response.status === StatusCode.Unauthorized || response.status === StatusCode.Forbidden) {
+    url = Sitemap.Errors.Unauthorized;
+} else if (response.status === StatusCode.NotFound) {
+    url = Sitemap.Errors.NoFound;
+} else if (response.status === StatusCode.ServerError) {
+    url = Sitemap.Errors.ServerError;
+}
+
+// Switch statements remove redundancies of the if...else
+switch (response.status) {
+    case StatusCode.Unauthorized:
+    case StatusCode.Forbidden: {
+        url = Sitemap.Errors.Unauthorized;
+        break;
+    }
+    case StatusCode.NotFound: {
+        url = Sitemap.Errors.NoFound;
+        break;
+    }
+    case StatusCode.ServerError: {
+        url = Sitemap.Errors.ServerError;
+        break;
+    }
+}
+
+// Avoid both when possible
+const urls = {
+    [StatusCode.Unauthorized]: Sitemap.Errors.Unauthorized,
+    [StatusCode.Forbidden]: Sitemap.Errors.Unauthorized,
+    [StatusCode.NotFound]: Sitemap.Errors.NotFound,
+    [StatusCode.ServerError]: Sitemap.Errors.ServerError
+};
+...
+url = urls[response.status];
+
+// Even better... align `Sitemap.Errors` with `StatusCode` values...
+url = Sitemap.Errors[response.status];
+```
 
 ## Use descriptive names
 

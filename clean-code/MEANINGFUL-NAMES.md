@@ -6,6 +6,65 @@ Simple rules for creating good names.
 
 ## Meaningful Names
 
+### Use Intention-Revealing Names
+
+The name of a thing should answer what it does, how it's used, and why it exists. Simply by reading
+the name you should have some sense of the intention.
+
+For example, the following code doesn't indicate the intention:
+
+```CS
+public bool Compare(List<Product> list, float ct)
+{
+    var c = 19.99f; // Products below this cost should not contribute to the total.
+    var tc = 0;
+
+    foreach (var l in list)
+    {
+        var more = l.Cost > c;
+
+        if (!more)
+        {
+            continue;
+        }
+
+        tc += l.Cost;
+    }
+
+    return tc > ct;
+}
+```
+
+Reading the code above gives you very little information about what exactly it's supposed to be
+doing. Simply by renaming variables, methods, etc., you can add significant clarity to your code.
+For example, the above could be rewritten as such:
+
+```CS
+public bool IsProductsTotalCostAboveThreshold(List<Product> products, float costThreshold)
+{
+    var minimumCost = 19.99f; // Products below this cost should not contribute to the total.
+    var totalCost = 0;
+
+    foreach (var product in products)
+    {
+        var costBelowMinimum = product.Cost <= minimumCost;
+
+        if (!costBelowMinimum)
+        {
+            continue;
+        }
+
+        totalCost += product.Cost;
+    }
+
+    return totalCost > costThreshold;
+}
+```
+
+Now the intention of the method is clear (although contrived). No comments needed to be added, while
+it could be refactored to be less verbose, by simply renaming the method and related variables, the
+code is significantly more digestible.
+
 ### Make Meaningful Distinctions
 
 #### Avoid Noise Words
