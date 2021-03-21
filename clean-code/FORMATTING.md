@@ -62,7 +62,7 @@ else
     return false;
 ```
 
-Left to it's current code execution path, the above should be re-written like this:
+Left to its current code execution path, the above should be re-written like this:
 ```CSharp
 if (myNumberEntry > upperLimit)
 {
@@ -78,7 +78,7 @@ else
 }
 ```
 
-While this refactored code is easier to read, the inclusion of the `else if` and `else` further muddy it's implementation and its desireability.  This logic could be inversed making for a cleaner, shorter set of code that accomplishes the same thing like so:
+While this refactored code is easier to read, the inclusion of the `else if` and `else` further muddy its implementation and its desireability.  This logic could be inversed making for a cleaner, shorter set of code that accomplishes the same thing like so:
 ```CSharp
 if (myNumberEntry >= lowerLimit && myNumberEntry <= upperLimit)
 {
