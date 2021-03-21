@@ -62,7 +62,7 @@ else
     return false;
 ```
 
-Left to its current code execution path, the above should be re-written like this:
+Left to its current logical code execution paths, the above should be re-written like this:
 ```CSharp
 if (myNumberEntry > upperLimit)
 {
@@ -78,7 +78,7 @@ else
 }
 ```
 
-While this refactored code is easier to read, the inclusion of the `else if` and `else` further muddy its implementation and its desireability.  This logic could be inversed making for a cleaner, shorter set of code that accomplishes the same thing like so:
+While this refactored code is easier to read, the inclusion of the `else if` and `else` further muddy its implementation and its desireability.  This logic could be inversed making for a cleaner, shorter set of code that accomplishes the same thing.  Check it out:
 ```CSharp
 if (myNumberEntry >= lowerLimit && myNumberEntry <= upperLimit)
 {
@@ -101,7 +101,7 @@ public bool IsNewLineBetterThanSameLine
 }
 ```
 
-While we value curly braces, we also realize the code bloat it can lend itself to.  The above is one such example.  Consider rewriting this using an expression body like so:
+While we value curly braces, we also realize the code bloat it can lend itself to.  The above is one such example.  Consider rewriting this using an expression body and eliminating the need for curly braces entirely:
 ```CSharp
 public bool _isNewLineBetterthanSameLine;
 public bool IsNewLineBetterThanSameLine => _isNewLineBetterthanSameLine;
@@ -109,7 +109,7 @@ public bool IsNewLineBetterThanSameLine => _isNewLineBetterthanSameLine;
 
 Also when indenting, you should always been aware of the number of nested indents being used. Nested indents within a single function can be considered a code smell and we avoid them as much as possible.  Therefore, you should strive to never indent more than once in a single function.
 
-Consider this bad, nested indenting function code:
+Consider this hard to read, nested indenting function code:
 ```CSharp
 function decimal GetAllOrderCosts(Order orders)
 {
@@ -145,7 +145,7 @@ function decimal GetOrderItemCost(OrderItem orderItem)
     return GetCostByUnitAndQuantity(orderItem.Quantity, orderItem.UnitCost)
 }
 
-funciton decimal GetOrderCost(Order order)
+function decimal GetOrderCost(Order order)
 {
     decimal orderCost = 0;
     orderItems.ForEach(orderItem =>
