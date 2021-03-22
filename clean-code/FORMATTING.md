@@ -129,7 +129,7 @@ public decimal GetAllOrderCosts(Order orders)
                 allOrderCosts += orderItem.FlatCost;
                 continue;
             }
-            allOrderCosts += GetCostByUnitAndQuantity(orderItem.Quantity, orderItem.UnitCost)
+            allOrderCosts += GetCostByUnitAndQuantity(orderItem.Quantity, orderItem.UnitCost);
         };
     });
     return allOrderCosts;
