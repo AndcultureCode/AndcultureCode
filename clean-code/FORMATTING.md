@@ -16,7 +16,55 @@ Unnecessary comments, such as those on well-named variables, creates space that 
 
 ### Ordering
 
-https://github.com/AndcultureCode/AndcultureCode/issues/68
+While files should be kept small, we realize that due to varying factors files
+extend well beyond 100 lines. Due to this reality, our team leverages regions to organize our
+different members.
+
+Please refer to the following documentation for regions by language:
+
+-   [CSharp](https://github.com/AndcultureCode/AndcultureCode/blob/main/CODE-CONVENTIONS-CSHARP.md)
+-   [TypeScript](https://github.com/AndcultureCode/AndcultureCode/blob/main/CODE-CONVENTIONS-TYPESCRIPT.md)
+
+#### Variable / Property Regions
+
+Regions containing properties should maintain alphabetical order.
+
+```CSharp
+#region Properties
+
+public string Description { get; set; }
+public bool IsActive { get; set; }
+public string Name { get; set; }
+
+#endregion Properties
+```
+
+#### Function / Method Regions
+
+Regions containing functions should order members downward by call order. In other words, a
+function that is called should be below a function that does the calling.
+
+```CSharp
+#region Public Methods
+
+public void Import(long importId)
+{
+    var files = FindAll(importId);
+    ImportFiles(files);
+}
+
+public IEnumerable<File> FindAll(long importId)
+    => _fileReadConductor.FindAll(e => e.ImportId == importId).ToList();
+
+public void ImportFiles(IEnumerable<File> files) => files.ForEach(ImportFile);
+
+public void ImportFile(File file)
+{
+    // import logic
+}
+
+#endregion Public Methods
+```
 
 ## Horizontal Formatting
 
