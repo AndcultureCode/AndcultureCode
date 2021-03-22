@@ -50,7 +50,7 @@ var pasteValidationResult = _pasteValidateConductor.Validate(
 
 ### Indentation
 
-When encountering single lines of execution within a block of code, you should use curly braces.  Curly braces provide a visual aid in reading scoped code execution.
+When encountering single lines of execution within a block of code, you should use curly braces.  Curly braces provide a visual aid in reading scoped code execution.  They also aid in preventing unexpected errors.
 
 Consider the following code example which we consider a bad coding practice:
 ```CSharp
@@ -87,11 +87,16 @@ if (myNumberEntry >= lowerLimit && myNumberEntry <= upperLimit)
 return true;
 ```
 
+Better yet, we could eliminate the indenting entirely...
+```CSharp
+return myNumberEntry > upperLimit || myNumberEntry < lowerLimit;
+```
+
 As with any rule, certain exceptions can apply.  One such exception to this rule is the use of expression bodies.
 
 Consider the following code:
 ```CSharp
-public bool _isNewLineBetterthanSameLine;
+private bool _isNewLineBetterthanSameLine;
 public bool IsNewLineBetterThanSameLine
 {
     get
@@ -103,31 +108,29 @@ public bool IsNewLineBetterThanSameLine
 
 While we value curly braces, we also realize the code bloat it can lend itself to.  The above is one such example.  Consider rewriting this using an expression body and eliminating the need for curly braces entirely:
 ```CSharp
-public bool _isNewLineBetterthanSameLine;
+private bool _isNewLineBetterthanSameLine;
 public bool IsNewLineBetterThanSameLine => _isNewLineBetterthanSameLine;
 ```
 
-Also when indenting, you should always been aware of the number of nested indents being used. Nested indents within a single function can be considered a code smell and we avoid them as much as possible.  Therefore, you should strive to never indent more than once in a single function.
+Also when indenting, you should always be aware of the number of nested indents being used. Nested indents within a single function can be considered a code smell and we avoid them as much as possible.  Therefore, you should strive to never indent more than once in a single function.
 
 Consider this hard to read, nested indenting function code:
 ```CSharp
-function decimal GetAllOrderCosts(Order orders)
+public decimal GetAllOrderCosts(Order orders)
 {
     var allOrderCosts = 0;
     orders.ForEach(order => {
-        decimal orderCost = 0;
         for (var index = 0; index <= OrderItems.length; index++)
         {
             var orderItem = OrderItems[index];
             decimal orderItemCost = 0;
             if (orderItem.IsFlatCost)
             {
-                orderItemCost = orderItem.FlatCost;
+                allOrderCosts += orderItem.FlatCost;
                 continue;
             }
-            orderItemCost = GetCostByUnitAndQuantity(orderItem.Quantity, orderItem.UnitCost)
+            allOrderCosts += GetCostByUnitAndQuantity(orderItem.Quantity, orderItem.UnitCost)
         };
-        allOrderCosts += orderCost;
     });
     return allOrderCosts;
 }
@@ -135,27 +138,26 @@ function decimal GetAllOrderCosts(Order orders)
 
 The above example could be rewritten as follows:
 ```CSharp
-function decimal GetOrderItemCost(OrderItem orderItem)
+public decimal GetOrderItemCost(OrderItem orderItem)
 {
-    var orderItem = OrderItems[index];
     if (orderItem.IsFlatCost)
     {
         return orderItem.FlatCost;
     }
-    return GetCostByUnitAndQuantity(orderItem.Quantity, orderItem.UnitCost)
+    return GetCostByUnitAndQuantity(orderItem.Quantity, orderItem.UnitCost);
 }
 
-function decimal GetOrderCost(Order order)
+public decimal GetOrderCost(Order order)
 {
     decimal orderCost = 0;
-    orderItems.ForEach(orderItem =>
+    order.Items.ForEach(orderItem =>
     {
         orderCost = GetOrderItemCost(orderItem);
-    };
+    });
     return orderCost;
 }
 
-function decimal GetAllOrderCosts(List<Order> orders)
+public decimal GetAllOrderCosts(List<Order> orders)
 {
     var allOrderCosts = 0;
     orders.ForEach(order =>
@@ -166,7 +168,7 @@ function decimal GetAllOrderCosts(List<Order> orders)
 }
 ```
 
-It should also be noted that the above example goes hand-in-hand with the core concepts already discussed in the previous functions chapters more specifically as they relate to [Do One Thing](https://github.com/AndcultureCode/AndcultureCode/blob/main/clean-code/FUNCTIONS.md#do-one-thing) and [Simple](https://github.com/AndcultureCode/AndcultureCode/blob/main/clean-code/FUNCTIONS.md#do-one-thing)
+It should also be noted that the above example goes hand-in-hand with the core concepts previously discussed in [Functions - Do One Thing](https://github.com/AndcultureCode/AndcultureCode/blob/main/clean-code/FUNCTIONS.md#do-one-thing) and [Functions - Simple](https://github.com/AndcultureCode/AndcultureCode/blob/main/clean-code/FUNCTIONS.md#do-one-thing)
 
 ### Team Rules
 
