@@ -102,9 +102,9 @@ When encountering single lines of execution within a block of code, you should u
 
 Consider the following code example which we consider a bad coding practice:
 ```CSharp
-if (myNumberEntry > upperLimit)
+if (radius > upperLimit)
     return true;
-else if (myNumberEntry < lowerLimit)
+else if (radius < lowerLimit)
     return true;
 else
     return false;
@@ -112,11 +112,11 @@ else
 
 Left to its current logical code execution paths, the above should be re-written like this:
 ```CSharp
-if (myNumberEntry > upperLimit)
+if (radius > upperLimit)
 {
     return true;
 }
-else if (myNumberEntry < lowerLimit)
+else if (radius < lowerLimit)
 {
     return true;
 }
@@ -128,7 +128,7 @@ else
 
 While this refactored code is easier to read, the inclusion of the `else if` and `else` further muddy its implementation and its desireability.  This logic could be inversed making for a cleaner, shorter set of code that accomplishes the same thing.  Check it out:
 ```CSharp
-if (myNumberEntry >= lowerLimit && myNumberEntry <= upperLimit)
+if (radius >= lowerLimit && radius <= upperLimit)
 {
     return false;
 }
@@ -137,7 +137,7 @@ return true;
 
 Better yet, we could eliminate the indenting entirely...
 ```CSharp
-return myNumberEntry > upperLimit || myNumberEntry < lowerLimit;
+return radius > upperLimit || radius < lowerLimit;
 ```
 
 As with any rule, certain exceptions can apply.  One such exception to this rule is the use of expression bodies.
