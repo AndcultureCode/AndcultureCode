@@ -15,3 +15,11 @@ Functions are the first line of organization in any program. Lets prioritize wri
 Nothing quite like a well-placed comment.
 Nothing clutters up code more than frivolous comments.
 Nothing is quite as damaging as out-of-date incorrect comments.
+
+## [Formatting](clean-code/FORMATTING.md)
+
+Guidelines for formatting your code to improve readability and comprehension.
+
+## [Objects and Data Structures](clean-code/OBJECTS-AND-DATA-STRUCTURES.md)
+
+Best practices when working with objects and data structures.

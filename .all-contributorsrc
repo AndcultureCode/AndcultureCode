@@ -1,0 +1,115 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "KevinBusch",
+      "name": "Kevin Busch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/775414?v=4",
+      "profile": "https://github.com/KevinBusch",
+      "contributions": [
+        "review",
+        "doc"
+      ]
+    },
+    {
+      "login": "jstevenson",
+      "name": "Jim Stevenson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/91424?v=4",
+      "profile": "https://github.com/jstevenson",
+      "contributions": [
+        "review",
+        "doc"
+      ]
+    },
+    {
+      "login": "HeyKos",
+      "name": "Mike Koser",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5178698?v=4",
+      "profile": "https://github.com/HeyKos",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "wintondeshong",
+      "name": "Winton DeShong",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48424?v=4",
+      "profile": "http://www.winton.me/",
+      "contributions": [
+        "maintenance",
+        "review",
+        "doc"
+      ]
+    },
+    {
+      "login": "dylanjustice",
+      "name": "Dylan Justice",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22502365?v=4",
+      "profile": "http://resume.dylanjustice.com",
+      "contributions": [
+        "review",
+        "doc"
+      ]
+    },
+    {
+      "login": "brandongregoryscott",
+      "name": "Brandon Scott",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11774799?v=4",
+      "profile": "https://github.com/brandongregoryscott",
+      "contributions": [
+        "maintenance",
+        "review",
+        "doc"
+      ]
+    },
+    {
+      "login": "myty",
+      "name": "Michael Tyson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37794?v=4",
+      "profile": "http://mytydev.com",
+      "contributions": [
+        "review",
+        "doc"
+      ]
+    },
+    {
+      "login": "Stefanie899",
+      "name": "Stefanie Leitch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37462028?v=4",
+      "profile": "https://github.com/Stefanie899",
+      "contributions": [
+        "review",
+        "doc"
+      ]
+    },
+    {
+      "login": "joshuapeters",
+      "name": "Joshua Peters",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9259962?v=4",
+      "profile": "https://github.com/joshuapeters",
+      "contributions": [
+        "review",
+        "doc"
+      ]
+    },
+    {
+      "login": "jhugs",
+      "name": "Joshua Hughes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/14300627?v=4",
+      "profile": "https://github.com/jhugs",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "AndcultureCode",
+  "projectOwner": "AndcultureCode",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
