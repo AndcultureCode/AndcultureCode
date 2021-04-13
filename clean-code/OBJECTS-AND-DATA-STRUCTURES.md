@@ -4,9 +4,7 @@ Simple rules for writing Objects and Data Structures.
 
 [Table of Contents](../CLEAN-CODE.md)
 
-## Objects and Data Structures
-
-### Data Structure/Object Anti-Symmetry
+## Data Structure/Object Anti-Symmetry
 
 Data Structures are the inverse of Objects.
 
@@ -14,7 +12,7 @@ An Object hides its data behind a set of functions, acting as abstractions and a
 
 A Data Structure shares it's data pubicly, and has no functions inherent to the data structure to act upon that data.
 
-#### Data Structures
+### Data Structures
 
 In our projects Data Structures often take the form of Models, Entities, or DTOs. An example of one of these would be the following:
 
@@ -39,7 +37,7 @@ export interface User {
 }
 ```
 
-#### Objects
+### Objects
 
 In our projects we often take more functional approaches to business logic implementation. However, an example of the asymmetry of Objects to Data Structures can be viewed in the way we often use Immutable classes in our front end.
 
