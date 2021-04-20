@@ -11,24 +11,24 @@ Chained method calls are referred to as train wrecks since they look like a line
 coupled train cars:
 
 ```csharp
-var outputDirectory = ctxt.getOptions().getScratchDirectory().getAbsolultePath();
+var outputDirectory = context.GetOptions().GetScratchDirectory().GetAbsolutePath();
 ```
 
 This would be better split up as:
 
 ```csharp
-var options = ctxt.getOptions();
-var scratchDirectory = options.getScratchDirectory();
-var outputDirectory = scratchDirectory.getAbsolultePath();
+var options = context.GetOptions();
+var scratchDirectory = options.GetScratchDirectory();
+var outputDirectory = scratchDirectory.GetAbsolutePath();
 ```
 
-But whether this defies the Law of Demeter or not depends if the classes for `ctxt`, `options`
+But whether this defies the Law of Demeter or not depends if the classes for `context`, `options`
 and `scratchDirectory` are data structures (with accessors) or objects.
 If the classes are data structures with no methods, and are written like the following, we would
 know that the law is not being violated:
 
 ```csharp
-var outputDirectory = ctxt.options.scratchDirectory.absolultePath;
+var outputDirectory = context.Options.ScratchDirectory.AbsolutePath;
 ```
 
 ### Hybrids
@@ -46,7 +46,7 @@ For the example code above, why do we want the scratch directory?
 If it is to create an output stream for a file, why not do this instead:
 
 ```csharp
-var outputStream = ctxt.createScratchFileStream(classFileName);
+var outputStream = context.CreateScratchFileStream(classFileName);
 ```
 
 This seems like a reasonable method to include, while hiding internal functionality and obeying
