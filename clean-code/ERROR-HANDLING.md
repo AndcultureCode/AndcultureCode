@@ -148,3 +148,16 @@ be exceptional](https://mattwarren.org/2016/12/20/Why-Exceptions-should-be-Excep
 catch unhandled exceptions where they occur and gracefully translate those errors in a properly
 encapsulated fashion before letting them flow through or around the system to layers that would otherwise
 have zero context.
+
+## Define Exception Classes in Terms of a Caller's Needs
+
+Errors can be classified in multiple ways, such as by source (what component caused it) or
+by type (device failure vs. network failure vs. programming errors).
+However, we should define exception classes by how they are caught.
+It is not beneficial to throw 5 different kinds of exceptions when the caller only cares about
+2 types of exceptions.
+
+Wrapping third-party APIs is a best practice, rather than passing on API exceptions.
+This minimizes dependencies, allows code to be moved around when needed,
+and you aren't tied to a vendor's API.
+It also makes mocking third-party calls easier when testing code.
