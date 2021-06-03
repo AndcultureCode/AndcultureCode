@@ -157,7 +157,8 @@ However, we should define exception classes by how they are caught.
 It is not beneficial to throw 5 different kinds of exceptions when the caller only cares about
 2 types of exceptions.
 
-Wrapping third-party APIs is a best practice, rather than passing on API exceptions.
-This minimizes dependencies, allows code to be moved around when needed,
-and you aren't tied to a vendor's API.
+When working with third-party APIs it is a best practice to wrap their API in your own class.
+This allows you to convert their error handling into exceptions that make sense for your application,
+rather than passing along third-party exceptions.
+This minimizes dependencies and allows you to more easily handle API changes.
 It also makes mocking third-party calls easier when testing code.
