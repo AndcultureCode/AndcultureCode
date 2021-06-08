@@ -23,3 +23,7 @@ Guidelines for formatting your code to improve readability and comprehension.
 ## [Objects and Data Structures](clean-code/OBJECTS-AND-DATA-STRUCTURES.md)
 
 Best practices when working with objects and data structures.
+
+## [Error Handling](clean-code/ERROR-HANDLING.md)
+
+Planning for the unexpected to happen.
