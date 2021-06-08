@@ -10,7 +10,7 @@ Data Structures are the inverse of Objects.
 
 An Object hides its data behind a set of functions, acting as abstractions and actors of that data.
 
-A Data Structure shares it's data pubicly, and has no functions inherent to the data structure to act upon that data.
+A Data Structure shares its data pubicly, and has no functions to act upon the underlying data.
 
 ### Data Structures
 
@@ -19,10 +19,10 @@ In our projects Data Structures often take the form of Models, Entities, or DTOs
 ```CS
 public class User
 {
+    public string Email { get; set; }
     public string FirstName { get; set; }
-    public string LastName  { get; set; }
-    public string Email     { get; set; }
-    public string Password  { get; set; }
+    public string LastName { get; set; }
+    public string Password { get; set; }
 }
 ```
 
@@ -30,18 +30,18 @@ In Typescript we often build intefaces to shape our data structures:
 
 ```ts
 export interface User {
-    FirstName: string;
-    LastName:  string;
-    Email:     string;
-    Password:  string;
+    email:     string;
+    firstName: string;
+    lastName:  string;
+    password:  string;
 }
 ```
 
 ### Objects
 
-In our projects we often take more functional approaches to business logic implementation. However, an example of the asymmetry of Objects to Data Structures can be viewed in the way we often use Immutable classes in our front end.
+In our projects we often take more functional approaches to business logic implementation. However, an example of the asymmetry of Objects to Data Structures can be viewed in the way we use Immutable classes in our front end.
 
-An example of how we'd often use Objects can be seen in our use of Immutable, and our Record pattern ont he front end.
+An example of how we'd often use Objects can be seen in our use of Immutable.
 
 ```ts
 export class UserRecord {
@@ -72,16 +72,16 @@ A C# equivalent of this might look something like:
 ```cs
 public class UserRecord
 {
+    private readonly string _email;
     private readonly string _firstName;
     private readonly string _lastName;
-    private readonly string _email;
     private readonly string _password;
 
     public UserRecord(User user)
     {
+        _email     = user.Email;
         _firstName = user.FirstName;
         _lastName  = user.LastName;
-        _email     = user.Email;
         _password  = user.Password;
     }
 
