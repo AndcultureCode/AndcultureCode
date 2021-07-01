@@ -86,4 +86,10 @@ https://github.com/AndcultureCode/AndcultureCode/issues/110
 
 ### Clean Boundaries
 
-https://github.com/AndcultureCode/AndcultureCode/issues/111
+Change is one of the things that happens at boundaries, and good software design can accommodate
+change without large investments of time and work.
+When we use code from other teams we have to take care to protect our investment and make sure
+that future changes are not too costly.
+Code at boundaries needs to be clearly separated and our tests need to define our expectations.
+Our code should not know the particulars of external code, and boundaries allow us to interact with
+code and standards that we do control and understand.
