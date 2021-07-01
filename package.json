@@ -3,7 +3,7 @@
     "dependencies": {},
     "description": "Documentation of organization engineering best practices",
     "devDependencies": {
-        "and-cli": "2.7.1",
+        "and-cli": "2.7.2",
         "prettier": "1.19.1"
     },
     "homepage": "https://github.com/AndcultureCode/AndcultureCode#readme",

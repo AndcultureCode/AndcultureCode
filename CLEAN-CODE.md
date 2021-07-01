@@ -27,3 +27,7 @@ Best practices when working with objects and data structures.
 ## [Error Handling](clean-code/ERROR-HANDLING.md)
 
 Planning for the unexpected to happen.
+
+## [Boundaries](clean-code/BOUNDARIES.md)
+
+Best practices for keeping the boundaries in our code clean.
