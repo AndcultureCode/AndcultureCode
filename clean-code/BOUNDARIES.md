@@ -152,7 +152,14 @@ test("when property values not provided in class definition, returns record with
 
 ### Using Code That Does Not Yet Exist
 
-https://github.com/AndcultureCode/AndcultureCode/issues/110
+If your software depends on unbuilt software, you have a boundary between yours and the other. Because you don't know what the implementation will be, it can slow down your development. In order to remove the roadblock, we can define our own interface based on our own specifications. After removing the boundary or giving clarity to the implementation, we can develop an adapter that will encapsulate the interaction with the API and provide a place where API changes can be made.
+
+For instance, consider software to be used in a radio communication system. "Transmitter" is an unknown subsystem within the radio communications system, and is outside its responsibility. The transmitter was used for the following purposes within the scope of the system.
+
+> Key the transmitter on the provided frequency and emit an analog representation of the data coming from this stream
+
+The interface, named `Transmitter` is created, and a method defined called `transmit` that takes a frequency and a data stream. The interface is now under the control of the team integrating with it.
+Finally, the `TransmitterAdapter` is developed to bridge the interface with the future API.
 
 ### Clean Boundaries
 
