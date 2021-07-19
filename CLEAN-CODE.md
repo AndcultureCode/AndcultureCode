@@ -31,3 +31,7 @@ Planning for the unexpected to happen.
 ## [Boundaries](clean-code/BOUNDARIES.md)
 
 Best practices for keeping the boundaries in our code clean.
+
+## [Unit Tests](clean-code/UNIT-TESTS.md)
+
+Tests are as important as production code, and need to be kept clean, expressive and succinct.
